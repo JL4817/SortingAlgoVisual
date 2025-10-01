@@ -17,9 +17,7 @@ public class Visualizer extends JFrame {
     public Visualizer() {
         setTitle("Sorting Algorithm Visualizer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true);
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        gd.setFullScreenWindow(this);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         setupUI();
     }
@@ -126,7 +124,8 @@ public class Visualizer extends JFrame {
         // Get delay from slider (inverse - higher value = faster)
         // e.g. 101 (Max value) - 1 (Slider)  = 100 ms delay => Slow
         // Easier for users, higher speed values = animation is faster
-        int delay = 101 - speedSlider.getValue();
+        // Just made it slower
+        int delay = 505 - (speedSlider.getValue() * 5);
 
         // Run sorting in separate thread
         new Thread(new Runnable() {

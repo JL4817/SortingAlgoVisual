@@ -97,3 +97,4 @@ public class Panel extends JPanel {
         BubbleSort.sort(array, this, delay);
     }
 }
+
