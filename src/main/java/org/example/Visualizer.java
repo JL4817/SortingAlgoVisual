@@ -24,6 +24,9 @@ public class Visualizer extends JFrame {
 
     // Creates and positions the UI Components
     private void setupUI() {
+        ToolTipManager.sharedInstance().setDismissDelay(Integer.MAX_VALUE); // Never auto-dismiss
+        ToolTipManager.sharedInstance().setInitialDelay(0); // Show immediately
+
         // Main layout
         setLayout(new BorderLayout(10, 10));
 
@@ -34,6 +37,13 @@ public class Visualizer extends JFrame {
 
         // Sorting algorithm buttons
         btnBubble = new JButton("Bubble Sort");
+        btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
+                "<b>Bubble Sort</b><br/>" +
+                "Repeatedly compares adjacent elements and swaps them if they're in the wrong order.<br/><br/>" +
+                "<b>Time Complexity:</b> O(n²)<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1] → [2, 5, 1, 8] → [2, 1, 5, 8] → [1, 2, 5, 8]" +
+                "</div></html>");
+
         btnRandomize = new JButton("Randomize");
         btnReset = new JButton("Reset");
         btnExit = new JButton("Quit Program");

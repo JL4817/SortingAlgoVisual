@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="speed slower">
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="better GUI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +80,7 @@
       <workItem from="1759162972364" duration="156000" />
       <workItem from="1759163135188" duration="7301000" />
       <workItem from="1759268055665" duration="5379000" />
-      <workItem from="1759307736995" duration="336000" />
+      <workItem from="1759307736995" duration="2723000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -105,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759295670605</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="better GUI">
+      <option name="closed" value="true" />
+      <created>1759308340186</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759308340186</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +124,7 @@
     <MESSAGE value="Start" />
     <MESSAGE value="BubbleSort implemented, Speed" />
     <MESSAGE value="speed slower" />
-    <option name="LAST_COMMIT_MESSAGE" value="speed slower" />
+    <MESSAGE value="better GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="better GUI" />
   </component>
 </project>
