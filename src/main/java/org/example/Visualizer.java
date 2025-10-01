@@ -42,10 +42,35 @@ public class Visualizer extends JFrame {
         labelArraySize = new JLabel("Array Size:");
         txtArraySize = new JTextField("50", 5);
 
-        // Speed slider
+        // Speed slider with labels
         labelSpeed = new JLabel("Speed:");
         speedSlider = new JSlider(1, 100, 50);
         speedSlider.setPreferredSize(new Dimension(150, 30));
+
+        // Panel to hold the speed labels and slider
+        JPanel speedPanel = new JPanel();
+        speedPanel.setLayout(new BorderLayout());
+
+        // Label panel with GridLayout for positioning
+        JPanel speedLabelsPanel = new JPanel(new GridLayout(1, 3));
+        speedLabelsPanel.setPreferredSize(new Dimension(150, 20));
+
+        JLabel slowLabel = new JLabel("Slow", SwingConstants.LEFT);
+        slowLabel.setFont(new Font(slowLabel.getFont().getName(), Font.BOLD, 10));
+
+        JLabel normalLabel = new JLabel("Normal", SwingConstants.CENTER);
+        normalLabel.setFont(new Font(normalLabel.getFont().getName(), Font.BOLD, 10));
+
+        JLabel fastLabel = new JLabel("Fast", SwingConstants.RIGHT);
+        fastLabel.setFont(new Font(fastLabel.getFont().getName(), Font.BOLD, 10));
+
+        speedLabelsPanel.add(slowLabel);
+        speedLabelsPanel.add(normalLabel);
+        speedLabelsPanel.add(fastLabel);
+
+        // Add labels above slider
+        speedPanel.add(speedLabelsPanel, BorderLayout.NORTH);
+        speedPanel.add(speedSlider, BorderLayout.CENTER);
 
         // Status label
         labelStatus = new JLabel("Ready");
@@ -60,7 +85,7 @@ public class Visualizer extends JFrame {
         controlPanel.add(txtArraySize);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(labelSpeed);
-        controlPanel.add(speedSlider);
+        controlPanel.add(speedPanel);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(btnExit);
 
