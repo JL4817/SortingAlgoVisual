@@ -1,6 +1,8 @@
 package org.example;
 
 import org.example.algorithms.BubbleSort;
+import org.example.algorithms.SelectionSort;
+
 import javax.swing.JPanel;
 import java.awt.*;
 import java.util.Random;
@@ -96,5 +98,11 @@ public class Panel extends JPanel {
     public void bubbleSort(int delay) throws InterruptedException {
         BubbleSort.sort(array, this, delay);
     }
+
+    public void selectionSort(int delay) throws InterruptedException {
+        SelectionSort.sort(array, this, delay);
+    }
+
+
 }
 

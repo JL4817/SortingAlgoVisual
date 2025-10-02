@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 // Contains UI Components
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnRandomize, btnReset, btnExit;
     private JSlider speedSlider;
     private JTextField txtArraySize;
     private JLabel labelSpeed, labelArraySize, labelStatus;
@@ -36,12 +36,23 @@ public class Visualizer extends JFrame {
         controlPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         // Sorting algorithm buttons
-        btnBubble = new JButton("Bubble Sort");
+        btnBubble = new JButton("Bubble");
         btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
                 "<b>Bubble Sort</b><br/>" +
                 "Repeatedly compares adjacent elements and swaps them if they're in the wrong order.<br/><br/>" +
                 "<b>Time Complexity:</b> O(n²)<br/>" +
                 "<b>Example:</b> [5, 2, 8, 1] → [2, 5, 1, 8] → [2, 1, 5, 8] → [1, 2, 5, 8]" +
+                "</div></html>");
+
+        btnSelection = new JButton("Selection");
+        btnSelection.setToolTipText("<html><div style='font-size:14px;'>" +
+                "<b>Selection Sort</b><br/>" +
+                "Finds the minimum element from the unsorted portion and places it at the beginning.<br/><br/>" +
+                "<b>How it works:</b><br/>" +
+                "• <b>Current position (i):</b> The position you're trying to fill with the minimum value<br/>" +
+                "• <b>Search range (j from i+1 to n-1):</b> The unsorted portion where you search for the minimum<br/><br/>" +
+                "<b>Time Complexity:</b> O(n²)<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1] → [1, 2, 8, 5] → [1, 2, 8, 5] → [1, 2, 5, 8]" +
                 "</div></html>");
 
         btnRandomize = new JButton("Randomize");
@@ -87,6 +98,7 @@ public class Visualizer extends JFrame {
 
         // Add components to control panel
         controlPanel.add(btnBubble);
+        controlPanel.add(btnSelection);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(btnRandomize);
         controlPanel.add(btnReset);
@@ -117,6 +129,13 @@ public class Visualizer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startSort("Bubble");
+            }
+        });
+
+        btnSelection.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startSort("Selection");
             }
         });
 
@@ -171,6 +190,9 @@ public class Visualizer extends JFrame {
                         case "Bubble":
                             sortPanel.bubbleSort(delay);
                             break;
+                        case "Selection":
+                            sortPanel.selectionSort(delay);
+                            break;
                     }
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
@@ -213,6 +235,7 @@ public class Visualizer extends JFrame {
     // Enables or disables all action buttons at once (except for exit button)
     private void enableButtons(boolean enabled) {
         btnBubble.setEnabled(enabled);
+        btnSelection.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
     }
