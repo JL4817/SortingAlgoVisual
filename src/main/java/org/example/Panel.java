@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.algorithms.BubbleSort;
+import org.example.algorithms.InsertionSort;
 import org.example.algorithms.SelectionSort;
 
 import javax.swing.JPanel;
@@ -103,6 +104,9 @@ public class Panel extends JPanel {
         SelectionSort.sort(array, this, delay);
     }
 
+    public void insertionSort(int delay) throws InterruptedException {
+        InsertionSort.sort(array, this, delay);
+    }
 
 }
 

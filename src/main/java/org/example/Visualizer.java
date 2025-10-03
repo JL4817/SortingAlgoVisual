@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 // Contains UI Components
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnSelection, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnInsertion, btnRandomize, btnReset, btnExit;
     private JSlider speedSlider;
     private JTextField txtArraySize;
     private JLabel labelSpeed, labelArraySize, labelStatus;
@@ -47,12 +47,28 @@ public class Visualizer extends JFrame {
         btnSelection = new JButton("Selection");
         btnSelection.setToolTipText("<html><div style='font-size:14px;'>" +
                 "<b>Selection Sort</b><br/>" +
-                "Finds the minimum element from the unsorted portion and places it at the beginning.<br/><br/>" +
+                "Finds the minimum element from the unsorted portion and places it at the ith place.<br/><br/>" +
                 "<b>How it works:</b><br/>" +
                 "• <b>Current position (i):</b> The position you're trying to fill with the minimum value<br/>" +
                 "• <b>Search range (j from i+1 to n-1):</b> The unsorted portion where you search for the minimum<br/><br/>" +
                 "<b>Time Complexity:</b> O(n²)<br/>" +
                 "<b>Example:</b> [5, 2, 8, 1] → [1, 2, 8, 5] → [1, 2, 8, 5] → [1, 2, 5, 8]" +
+                "</div></html>");
+
+        btnInsertion = new JButton("Insertion");
+        btnInsertion.setToolTipText("<html><div style='font-size:14px;'>" +
+                "<b>Insertion Sort</b><br/>" +
+                "Picks elements one by one from the unsorted portion and inserts them into their correct position in the sorted portion by shifting elements.<br/><br/>" +
+                "<b>How it works:</b><br/>" +
+                "• <b>Pick element (i):</b> Select the next element from the unsorted portion (right side)<br/>" +
+                "• <b>Store as key:</b> Save this element temporarily<br/>" +
+                "• <b>Shift elements (j from i-1 to 0):</b> Move backward through the sorted portion, shifting each element one position to the right if it's larger than the key<br/>" +
+                "• <b>Insert key:</b> Place the key in the gap created by shifting<br/><br/>" +
+                "<b>Time Complexity:</b> O(n²) worst case, O(n) best case (already sorted)<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1]<br/>" +
+                "Pick 2: shift 5→right, insert 2 → [2, 5, 8, 1]<br/>" +
+                "Pick 8: no shift needed → [2, 5, 8, 1]<br/>" +
+                "Pick 1: shift 8,5,2→right, insert 1 → [1, 2, 5, 8]" +
                 "</div></html>");
 
         btnRandomize = new JButton("Randomize");
@@ -99,6 +115,7 @@ public class Visualizer extends JFrame {
         // Add components to control panel
         controlPanel.add(btnBubble);
         controlPanel.add(btnSelection);
+        controlPanel.add(btnInsertion);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(btnRandomize);
         controlPanel.add(btnReset);
@@ -136,6 +153,13 @@ public class Visualizer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startSort("Selection");
+            }
+        });
+
+        btnInsertion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startSort("Insertion");
             }
         });
 
@@ -193,6 +217,9 @@ public class Visualizer extends JFrame {
                         case "Selection":
                             sortPanel.selectionSort(delay);
                             break;
+                        case "Insertion":
+                            sortPanel.insertionSort(delay);
+                            break;
                     }
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
@@ -236,6 +263,7 @@ public class Visualizer extends JFrame {
     private void enableButtons(boolean enabled) {
         btnBubble.setEnabled(enabled);
         btnSelection.setEnabled(enabled);
+        btnInsertion.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
     }

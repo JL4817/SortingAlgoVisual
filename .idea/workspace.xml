@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="ToolTip display info about sort">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/SelectionSort.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="SelectionSort added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/InsertionSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
@@ -42,7 +41,9 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="33NYKjCfLHaC8hmRuf7IB1AIii3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -84,7 +85,8 @@
       <workItem from="1759163135188" duration="7301000" />
       <workItem from="1759268055665" duration="5379000" />
       <workItem from="1759307736995" duration="2854000" />
-      <workItem from="1759400426301" duration="4287000" />
+      <workItem from="1759400426301" duration="4394000" />
+      <workItem from="1759490589222" duration="5002000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -126,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759310775428</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="SelectionSort added">
+      <option name="closed" value="true" />
+      <created>1759405685033</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759405685033</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +148,7 @@
     <MESSAGE value="speed slower" />
     <MESSAGE value="better GUI" />
     <MESSAGE value="ToolTip display info about sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="ToolTip display info about sort" />
+    <MESSAGE value="SelectionSort added" />
+    <option name="LAST_COMMIT_MESSAGE" value="SelectionSort added" />
   </component>
 </project>
