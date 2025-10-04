@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 // Contains UI Components
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnSelection, btnInsertion, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnRandomize, btnReset, btnExit;
     private JSlider speedSlider;
     private JTextField txtArraySize;
     private JLabel labelSpeed, labelArraySize, labelStatus;
@@ -71,6 +71,23 @@ public class Visualizer extends JFrame {
                 "Pick 1: shift 8,5,2→right, insert 1 → [1, 2, 5, 8]" +
                 "</div></html>");
 
+        btnMerge = new JButton("Merge");
+        btnMerge.setToolTipText("<html><div style='font-size:14px;'>" +
+                "<b>Merge Sort</b><br/>" +
+                "Divides the array into halves recursively until single elements remain, then merges them back together in sorted order.<br/><br/>" +
+                "<b>How it works:</b><br/>" +
+                "• <b>Divide:</b> Split the array into two halves recursively until each subarray has only one element<br/>" +
+                "• <b>Conquer:</b> Single elements are considered sorted by definition<br/>" +
+                "• <b>Merge:</b> Combine two sorted subarrays by comparing their elements and placing them in order<br/>" +
+                "• <b>Repeat:</b> Continue merging until the entire array is reconstructed in sorted order<br/><br/>" +
+                "<b>Time Complexity:</b> O(n log n) in all cases (best, average, worst)<br/>" +
+                "<b>Space Complexity:</b> O(n) - requires additional space for temporary arrays<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1]<br/>" +
+                "Divide: [5, 2] [8, 1] → [5] [2] [8] [1]<br/>" +
+                "Merge: [2, 5] [1, 8]<br/>" +
+                "Final merge: [1, 2, 5, 8]" +
+                "</div></html>");
+
         btnRandomize = new JButton("Randomize");
         btnReset = new JButton("Reset");
         btnExit = new JButton("Quit Program");
@@ -116,6 +133,7 @@ public class Visualizer extends JFrame {
         controlPanel.add(btnBubble);
         controlPanel.add(btnSelection);
         controlPanel.add(btnInsertion);
+        controlPanel.add(btnMerge);
         controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
         controlPanel.add(btnRandomize);
         controlPanel.add(btnReset);
@@ -160,6 +178,13 @@ public class Visualizer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startSort("Insertion");
+            }
+        });
+
+        btnMerge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startSort("Merge");
             }
         });
 
@@ -220,6 +245,9 @@ public class Visualizer extends JFrame {
                         case "Insertion":
                             sortPanel.insertionSort(delay);
                             break;
+                        case "Merge":
+                            sortPanel.mergeSort(delay);
+                            break;
                     }
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
@@ -264,6 +292,7 @@ public class Visualizer extends JFrame {
         btnBubble.setEnabled(enabled);
         btnSelection.setEnabled(enabled);
         btnInsertion.setEnabled(enabled);
+        btnMerge.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
     }
