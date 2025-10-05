@@ -3,6 +3,7 @@ package org.example;
 import org.example.algorithms.BubbleSort;
 import org.example.algorithms.InsertionSort;
 import org.example.algorithms.MergeSort;
+import org.example.algorithms.QuickSort;
 import org.example.algorithms.SelectionSort;
 
 import javax.swing.JPanel;
@@ -113,5 +114,7 @@ public class Panel extends JPanel {
         MergeSort.sort(array, this, delay);
     }
 
+    public void quickSort(int delay, String pivotStrategy) throws InterruptedException {
+        QuickSort.sort(array, this, delay, pivotStrategy);
+    }
 }
-

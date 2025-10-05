@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="InsertionSort added">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/MergeSort.java" afterDir="false" />
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="MergeSort added">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/QuickSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
@@ -88,7 +88,8 @@
       <workItem from="1759400426301" duration="4394000" />
       <workItem from="1759490589222" duration="5094000" />
       <workItem from="1759604065856" duration="473000" />
-      <workItem from="1759604543752" duration="4397000" />
+      <workItem from="1759604543752" duration="4774000" />
+      <workItem from="1759674523048" duration="8281000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -146,11 +147,30 @@
       <option name="project" value="LOCAL" />
       <updated>1759509362115</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="MergeSort added">
+      <option name="closed" value="true" />
+      <created>1759609301985</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759609301985</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Start" />
@@ -160,6 +180,7 @@
     <MESSAGE value="ToolTip display info about sort" />
     <MESSAGE value="SelectionSort added" />
     <MESSAGE value="InsertionSort added" />
-    <option name="LAST_COMMIT_MESSAGE" value="InsertionSort added" />
+    <MESSAGE value="MergeSort added" />
+    <option name="LAST_COMMIT_MESSAGE" value="MergeSort added" />
   </component>
 </project>

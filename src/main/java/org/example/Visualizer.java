@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 // Contains UI Components
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnQuick, btnRandomize, btnReset, btnExit;
     private JSlider speedSlider;
-    private JTextField txtArraySize;
-    private JLabel labelSpeed, labelArraySize, labelStatus;
+    private JTextField txtArraySize, txtPivot;
+    private JLabel labelSpeed, labelArraySize, labelStatus, labelPivot;
 
     // Sets up the main window and makes it full screen
     public Visualizer() {
@@ -30,10 +30,13 @@ public class Visualizer extends JFrame {
         // Main layout
         setLayout(new BorderLayout(10, 10));
 
-        // Control panel at the top
+        // Control panel at the top - using GridBagLayout for better spacing
         JPanel controlPanel = new JPanel();
-        controlPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 15, 10));
+        controlPanel.setLayout(new GridBagLayout());
         controlPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.anchor = GridBagConstraints.CENTER;
 
         // Sorting algorithm buttons
         btnBubble = new JButton("Bubble");
@@ -81,11 +84,33 @@ public class Visualizer extends JFrame {
                 "• <b>Merge:</b> Combine two sorted subarrays by comparing their elements and placing them in order<br/>" +
                 "• <b>Repeat:</b> Continue merging until the entire array is reconstructed in sorted order<br/><br/>" +
                 "<b>Time Complexity:</b> O(n log n) in all cases (best, average, worst)<br/>" +
-                "<b>Space Complexity:</b> O(n) - requires additional space for temporary arrays<br/>" +
                 "<b>Example:</b> [5, 2, 8, 1]<br/>" +
                 "Divide: [5, 2] [8, 1] → [5] [2] [8] [1]<br/>" +
                 "Merge: [2, 5] [1, 8]<br/>" +
                 "Final merge: [1, 2, 5, 8]" +
+                "</div></html>");
+
+        btnQuick = new JButton("Quick");
+        btnQuick.setToolTipText("<html><div style='font-size:14px; width:450px;'>" +
+                "<b>Quick Sort</b><br/>" +
+                "Selects a 'pivot' element and partitions the array so that elements smaller than the pivot are on the left and larger elements<br/>" +
+                " are on the right,<br/>" +
+                "then recursively sorts the partitions.<br/><br/>" +
+                "<b>How it works:</b><br/>" +
+                "• <b>Choose Pivot:</b> Select an element from the array as the pivot<br/>" +
+                "&nbsp;&nbsp;(commonly the last element of the current subarray)<br/>" +
+                "• <b>Partition:</b> Rearrange the array so elements less than the pivot<br/>" +
+                "&nbsp;&nbsp;are on the left, greater elements on the right<br/>" +
+                "• <b>Recurse:</b> Apply the same process to the left and right subarrays<br/>" +
+                "&nbsp;&nbsp;<i>Each subarray selects its own pivot from its last element</i><br/>" +
+                "• <b>Combine:</b> No explicit merge needed - the array is sorted in place<br/><br/>" +
+                "<b> Time Complexity:</b> O(n log n) average case, O(n²) worst case<br/>" +
+                "(rare with good pivot selection)<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1]<br/>" +
+                "• Pivot = 1 (last): Partition → [1] [5, 2, 8]<br/>" +
+                "• Left subarray [5, 2, 8]: Pivot = 8 (last) → [1] [5, 2] [8]<br/>" +
+                "• Left subarray [5, 2]: Pivot = 2 (last) → [1] [2] [5] [8]<br/>" +
+                "Result: [1, 2, 5, 8]" +
                 "</div></html>");
 
         btnRandomize = new JButton("Randomize");
@@ -95,6 +120,15 @@ public class Visualizer extends JFrame {
         // Array size input
         labelArraySize = new JLabel("Array Size:");
         txtArraySize = new JTextField("50", 5);
+
+        // Pivot index input for Quick Sort
+        labelPivot = new JLabel("Pivot Strategy:");
+        txtPivot = new JTextField("", 8);
+        txtPivot.setToolTipText("<html><div style='font-size:12px;'>" +
+                "Enter pivot selection strategy (Quick Sort):<br/>" +
+                " enter a number (0 to array size-1)<br/>" +
+                "&nbsp;&nbsp;Example: '0', '5', '25' to use that index" +
+                "</div></html>");
 
         // Speed slider with labels
         labelSpeed = new JLabel("Speed:");
@@ -129,22 +163,52 @@ public class Visualizer extends JFrame {
         // Status label
         labelStatus = new JLabel("Ready");
 
-        // Add components to control panel
-        controlPanel.add(btnBubble);
-        controlPanel.add(btnSelection);
-        controlPanel.add(btnInsertion);
-        controlPanel.add(btnMerge);
-        controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        controlPanel.add(btnRandomize);
-        controlPanel.add(btnReset);
-        controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        controlPanel.add(labelArraySize);
-        controlPanel.add(txtArraySize);
-        controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        controlPanel.add(labelSpeed);
-        controlPanel.add(speedPanel);
-        controlPanel.add(new JSeparator(SwingConstants.VERTICAL));
-        controlPanel.add(btnExit);
+        // First row - Sorting buttons + etc.
+        gbc.gridx = 0; gbc.gridy = 0;
+        controlPanel.add(btnBubble, gbc);
+
+        gbc.gridx = 1;
+        controlPanel.add(btnSelection, gbc);
+
+        gbc.gridx = 2;
+        controlPanel.add(btnInsertion, gbc);
+
+        gbc.gridx = 3;
+        controlPanel.add(btnMerge, gbc);
+
+        gbc.gridx = 4;
+        controlPanel.add(btnQuick, gbc);
+
+        gbc.gridx = 5;
+        controlPanel.add(btnRandomize, gbc);
+
+        gbc.gridx = 6;
+        controlPanel.add(btnReset, gbc);
+
+        // Second row - Configuration controls
+        gbc.gridy = 1;
+        gbc.gridx = 0;
+        controlPanel.add(labelArraySize, gbc);
+
+        gbc.gridx = 1;
+        controlPanel.add(txtArraySize, gbc);
+
+        gbc.gridx = 2;
+        controlPanel.add(labelPivot, gbc);
+
+        gbc.gridx = 3;
+        controlPanel.add(txtPivot, gbc);
+
+        gbc.gridx = 4;
+        controlPanel.add(labelSpeed, gbc);
+
+        gbc.gridx = 5;
+        gbc.gridwidth = 2;
+        controlPanel.add(speedPanel, gbc);
+
+        gbc.gridwidth = 1;
+        gbc.gridx = 7;
+        controlPanel.add(btnExit, gbc);
 
         // Status panel at bottom
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -185,6 +249,13 @@ public class Visualizer extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 startSort("Merge");
+            }
+        });
+
+        btnQuick.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startSort("Quick");
             }
         });
 
@@ -248,6 +319,10 @@ public class Visualizer extends JFrame {
                         case "Merge":
                             sortPanel.mergeSort(delay);
                             break;
+                        case "Quick":
+                            String pivotStrategy = txtPivot.getText().trim().toLowerCase();
+                            sortPanel.quickSort(delay, pivotStrategy);
+                            break;
                     }
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
@@ -258,6 +333,14 @@ public class Visualizer extends JFrame {
                     });
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                } catch (Exception e) {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            labelStatus.setText("Error: " + e.getMessage());
+                            enableButtons(true);
+                        }
+                    });
                 }
             }
         }).start();
@@ -293,6 +376,7 @@ public class Visualizer extends JFrame {
         btnSelection.setEnabled(enabled);
         btnInsertion.setEnabled(enabled);
         btnMerge.setEnabled(enabled);
+        btnQuick.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
     }
