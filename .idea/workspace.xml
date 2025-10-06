@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="MergeSort added">
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/HeapSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,9 @@
       <workItem from="1759604543752" duration="4774000" />
       <workItem from="1759674523048" duration="8916000" />
       <workItem from="1759745100044" duration="64000" />
-      <workItem from="1759748114423" duration="3089000" />
+      <workItem from="1759748114423" duration="3594000" />
+      <workItem from="1759755392705" duration="2600000" />
+      <workItem from="1759758005005" duration="2214000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -164,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759684988662</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme.">
+      <option name="closed" value="true" />
+      <created>1759751567762</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759751567762</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,6 +199,7 @@
     <MESSAGE value="SelectionSort added" />
     <MESSAGE value="InsertionSort added" />
     <MESSAGE value="MergeSort added" />
-    <option name="LAST_COMMIT_MESSAGE" value="MergeSort added" />
+    <MESSAGE value="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme." />
+    <option name="LAST_COMMIT_MESSAGE" value="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme." />
   </component>
 </project>

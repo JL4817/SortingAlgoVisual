@@ -154,6 +154,10 @@ public class Visualizer extends JFrame {
         btnReset = createModernButton("Reset");
         controlPanel.add(btnReset, gbc);
 
+        gbc.gridx = 7;
+        btnExit = createModernButton("Exit");
+        controlPanel.add(btnExit, gbc);
+
         // Second row - Configuration controls
         gbc.gridy = 2;
         gbc.gridx = 0;
@@ -185,14 +189,6 @@ public class Visualizer extends JFrame {
         gbc.gridwidth = 2;
         JPanel speedPanel = createSpeedPanel();
         controlPanel.add(speedPanel, gbc);
-
-        gbc.gridwidth = 1;
-        gbc.gridx = 7;
-        gbc.gridy = 1;
-        gbc.gridheight = 2;
-        btnExit = createModernButton("Exit");
-        btnExit.setPreferredSize(new Dimension(100, 60));
-        controlPanel.add(btnExit, gbc);
 
         // Status panel at bottom
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 15));
