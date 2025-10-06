@@ -10,22 +10,29 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.util.Random;
 
-// Handles display, animation and color etc.
 public class Panel extends JPanel {
 
-    // Color state constants (Easier for Algorithm classes)
+    // Color state constants
     public static final int DEFAULT = 0;
     public static final int COMPARING = 1;
     public static final int SWAPPING = 2;
     public static final int SORTED = 3;
 
-    private int[] array;    // Height values
-    private int[] colors;   // Color state
-    private int arraySize = 50; // Default bars to display when starting the program;
+    // Modern color palette
+    private static final Color DARK_BG = new Color(26, 32, 44);
+    private static final Color BAR_DEFAULT = new Color(100, 116, 139);
+    private static final Color BAR_COMPARING = new Color(251, 146, 60); // Orange
+    private static final Color BAR_SWAPPING = new Color(59, 130, 246); // Blue
+    private static final Color BAR_SORTED = new Color(52, 211, 153); // Green
+    private static final Color TEXT_COLOR = new Color(148, 163, 184);
+    private static final Color GRID_COLOR = new Color(51, 65, 85);
 
-    // Initializes the panel
+    private int[] array;
+    private int[] colors;
+    private int arraySize = 50;
+
     public Panel() {
-        setBackground(Color.WHITE);
+        setBackground(DARK_BG);
         randomizeArray(arraySize);
     }
 
@@ -42,7 +49,6 @@ public class Panel extends JPanel {
         repaint();
     }
 
-    // Reset array back to default
     public void resetArray() {
         for (int i = 0; i < arraySize; i++) {
             colors[i] = DEFAULT;
@@ -50,54 +56,122 @@ public class Panel extends JPanel {
         repaint();
     }
 
-    // Public method to update colors (for algorithm classes)
     public void updateColors(int index1, int index2, int state) {
         if (index1 >= 0 && index1 < arraySize) colors[index1] = state;
         if (index2 >= 0 && index2 < arraySize) colors[index2] = state;
     }
 
-
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+
+        // Enable anti-aliasing for smooth graphics
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         int width = getWidth();
         int height = getHeight();
         int barWidth = width / arraySize;
-        int maxValue = 500; // Max possible value
+        int maxValue = 500;
 
-        // Draw bars
+        // Draw subtle grid lines
+        g2d.setColor(GRID_COLOR);
+        g2d.setStroke(new BasicStroke(1));
+        for (int i = 0; i < 5; i++) {
+            int y = i * (height - 60) / 5 + 20;
+            g2d.drawLine(0, y, width, y);
+        }
+
+        // Draw bars with modern styling
         for (int i = 0; i < arraySize; i++) {
-            int barHeight = (int) ((double) array[i] / maxValue * (height - 60));
+            int barHeight = (int) ((double) array[i] / maxValue * (height - 80));
             int x = i * barWidth;
-            int y = height - barHeight - 40;
+            int y = height - barHeight - 50;
 
-            // Set color based on state
+            // Set color based on state with gradient effect
+            Color barColor;
             switch (colors[i]) {
                 case COMPARING:
-                    g.setColor(Color.RED);
+                    barColor = BAR_COMPARING;
                     break;
                 case SWAPPING:
-                    g.setColor(Color.BLUE);
+                    barColor = BAR_SWAPPING;
                     break;
                 case SORTED:
-                    g.setColor(Color.GREEN);
+                    barColor = BAR_SORTED;
                     break;
                 default:
-                    g.setColor(Color.GRAY);
+                    barColor = BAR_DEFAULT;
             }
 
-            g.fillRect(x, y, barWidth - 2, barHeight);
-            g.setColor(Color.BLACK);
-            g.drawRect(x, y, barWidth - 2, barHeight);
-            g.setFont(new Font("Arial", Font.PLAIN, 10));
-            String index = String.valueOf(i);
-            int indexX = x + (barWidth - g.getFontMetrics().stringWidth(index))/2;
-            g.drawString(index, indexX, height - 20);
+            // Draw bar with gradient
+            GradientPaint gradient = new GradientPaint(
+                    x, y, barColor,
+                    x, y + barHeight, barColor.darker()
+            );
+            g2d.setPaint(gradient);
+
+            // Draw rounded rectangle for modern look
+            int barPadding = Math.max(1, barWidth / 10);
+            g2d.fillRoundRect(x + barPadding, y, barWidth - 2 * barPadding, barHeight, 4, 4);
+
+            // Draw subtle border
+            g2d.setColor(barColor.brighter());
+            g2d.setStroke(new BasicStroke(1));
+            g2d.drawRoundRect(x + barPadding, y, barWidth - 2 * barPadding, barHeight, 4, 4);
+
+            // Draw index number at bottom (only if space permits)
+            if (arraySize <= 100) {
+                g2d.setColor(TEXT_COLOR);
+                g2d.setFont(new Font("Segoe UI", Font.PLAIN, 9));
+                String index = String.valueOf(i);
+                int indexX = x + (barWidth - g2d.getFontMetrics().stringWidth(index)) / 2;
+                g2d.drawString(index, indexX, height - 25);
+            }
         }
+
+        // Draw legend
+        drawLegend(g2d, width, height);
     }
 
-    // Sorting methods that delegate to algorithm class (Bubble)
+    private void drawLegend(Graphics2D g2d, int width, int height) {
+        int legendY = height - 15;
+        int legendX = 10;
+        int boxSize = 12;
+        int spacing = 120;
+
+        g2d.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+
+        // Default
+        g2d.setColor(BAR_DEFAULT);
+        g2d.fillRoundRect(legendX, legendY, boxSize, boxSize, 3, 3);
+        g2d.setColor(TEXT_COLOR);
+        g2d.drawString("Unsorted", legendX + boxSize + 5, legendY + 10);
+
+        // Comparing
+        legendX += spacing;
+        g2d.setColor(BAR_COMPARING);
+        g2d.fillRoundRect(legendX, legendY, boxSize, boxSize, 3, 3);
+        g2d.setColor(TEXT_COLOR);
+        g2d.drawString("Comparing", legendX + boxSize + 5, legendY + 10);
+
+        // Swapping
+        legendX += spacing;
+        g2d.setColor(BAR_SWAPPING);
+        g2d.fillRoundRect(legendX, legendY, boxSize, boxSize, 3, 3);
+        g2d.setColor(TEXT_COLOR);
+        g2d.drawString("Swapping", legendX + boxSize + 5, legendY + 10);
+
+        // Sorted
+        legendX += spacing;
+        g2d.setColor(BAR_SORTED);
+        g2d.fillRoundRect(legendX, legendY, boxSize, boxSize, 3, 3);
+        g2d.setColor(TEXT_COLOR);
+        g2d.drawString("Sorted", legendX + boxSize + 5, legendY + 10);
+    }
+
+    // Sorting methods
     public void bubbleSort(int delay) throws InterruptedException {
         BubbleSort.sort(array, this, delay);
     }
