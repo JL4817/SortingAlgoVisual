@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnQuick, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnQuick, btnHeap, btnRandomize, btnReset, btnExit;
     private JSlider speedSlider;
     private JTextField txtArraySize, txtPivot;
     private JLabel labelSpeed, labelArraySize, labelStatus, labelPivot;
@@ -147,14 +147,39 @@ public class Visualizer extends JFrame {
         controlPanel.add(btnQuick, gbc);
 
         gbc.gridx = 5;
+        btnHeap = createModernButton("Heap Sort");
+        btnHeap.setToolTipText("<html><div style='font-size:14px; width:450px;'>" +
+                "<b>Heap Sort</b><br/>" +
+                "Converts the array into a max heap structure, then repeatedly extracts the maximum element<br/>" +
+                "and places it at the end of the sorted portion.<br/><br/>" +
+                "<b>How it works:</b><br/>" +
+                "• <b>Build Max Heap:</b> Transform the array into a max heap where each parent<br/>" +
+                "&nbsp;&nbsp;node is greater than its children<br/>" +
+                "• <b>Extract Max:</b> Swap the root (largest element) with the last element<br/>" +
+                "&nbsp;&nbsp;of the heap and reduce heap size<br/>" +
+                "• <b>Heapify:</b> Restore the max heap property by moving the new root<br/>" +
+                "&nbsp;&nbsp;down to its correct position<br/>" +
+                "• <b>Repeat:</b> Continue extracting and heapifying until the heap is empty<br/><br/>" +
+                "<b>Time Complexity:</b> O(n log n) in all cases<br/>" +
+                "(consistent performance regardless of input)<br/>" +
+                "<b>Example:</b> [5, 2, 8, 1]<br/>" +
+                "• Build heap: [8, 5, 2, 1] (max heap structure)<br/>" +
+                "• Extract 8: [5, 1, 2] | [8]<br/>" +
+                "• Heapify & Extract 5: [2, 1] | [5, 8]<br/>" +
+                "• Extract 2: [1] | [2, 5, 8]<br/>" +
+                "Result: [1, 2, 5, 8]" +
+                "</div></html>");
+        controlPanel.add(btnHeap, gbc);
+
+        gbc.gridx = 6;
         btnRandomize = createModernButton("Randomize");
         controlPanel.add(btnRandomize, gbc);
 
-        gbc.gridx = 6;
+        gbc.gridx = 7;
         btnReset = createModernButton("Reset");
         controlPanel.add(btnReset, gbc);
 
-        gbc.gridx = 7;
+        gbc.gridx = 8;
         btnExit = createModernButton("Exit");
         controlPanel.add(btnExit, gbc);
 
@@ -217,6 +242,7 @@ public class Visualizer extends JFrame {
         btnInsertion.addActionListener(e -> startSort("Insertion"));
         btnMerge.addActionListener(e -> startSort("Merge"));
         btnQuick.addActionListener(e -> startSort("Quick"));
+        btnHeap.addActionListener(e -> startSort("Heap"));
         btnRandomize.addActionListener(e -> randomizeArray());
         btnReset.addActionListener(e -> {
             // no implementation yet
@@ -328,6 +354,9 @@ public class Visualizer extends JFrame {
                         String pivotStrategy = txtPivot.getText().trim().toLowerCase();
                         sortPanel.quickSort(delay, pivotStrategy);
                         break;
+                    case "Heap":
+                        sortPanel.heapSort(delay);
+                        break;
                 }
                 SwingUtilities.invokeLater(() -> {
                     labelStatus.setText("Sorting Complete!");
@@ -372,6 +401,7 @@ public class Visualizer extends JFrame {
         btnInsertion.setEnabled(enabled);
         btnMerge.setEnabled(enabled);
         btnQuick.setEnabled(enabled);
+        btnHeap.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
     }
