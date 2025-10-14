@@ -47,12 +47,14 @@ public class Visualizer extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
 
         // Title
-        JLabel titleLabel = new JLabel("SORTING VISUALIZER");
+        JLabel titleLabel = new JLabel("SORTING VISUALIZER", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
         titleLabel.setForeground(TEXT_PRIMARY);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 8;
+        gbc.gridwidth = 9;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
         gbc.insets = new Insets(0, 0, 20, 0);
         controlPanel.add(titleLabel, gbc);
 

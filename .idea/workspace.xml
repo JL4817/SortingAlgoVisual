@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="minor position change">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/algorithms/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/HeapSort.java" afterDir="false" />
-    </list>
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="heapsort" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -94,7 +89,7 @@
       <workItem from="1759748114423" duration="3594000" />
       <workItem from="1759755392705" duration="2600000" />
       <workItem from="1759758005005" duration="2530000" />
-      <workItem from="1760208636275" duration="4914000" />
+      <workItem from="1760208636275" duration="5029000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -184,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759760530404</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="heapsort">
+      <option name="closed" value="true" />
+      <created>1760214229047</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1760214229047</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +215,7 @@
     <MESSAGE value="MergeSort added" />
     <MESSAGE value="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme." />
     <MESSAGE value="minor position change" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor position change" />
+    <MESSAGE value="heapsort" />
+    <option name="LAST_COMMIT_MESSAGE" value="heapsort" />
   </component>
 </project>
