@@ -64,7 +64,9 @@ public class Visualizer extends JFrame {
 
         // Sorting algorithm buttons (First row)
         gbc.gridy = 1;
-        gbc.gridx = 0;
+
+        gbc.gridx = 0; // Column number
+        gbc.gridwidth = 1;
         btnBubble = createModernButton("Bubble Sort");
         btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
                 "<b>Bubble Sort</b><br/>" +
@@ -173,20 +175,26 @@ public class Visualizer extends JFrame {
                 "</div></html>");
         controlPanel.add(btnHeap, gbc);
 
-        gbc.gridx = 6;
+        // Second row - Control buttons
+        gbc.gridy = 2;
+
+        gbc.gridx = 0;
+        gbc.gridwidth = 2;
         btnRandomize = createModernButton("Randomize");
         controlPanel.add(btnRandomize, gbc);
 
-        gbc.gridx = 7;
+        gbc.gridx = 2;
         btnReset = createModernButton("Reset");
         controlPanel.add(btnReset, gbc);
 
-        gbc.gridx = 8;
+        gbc.gridx = 4;
         btnExit = createModernButton("Exit");
         controlPanel.add(btnExit, gbc);
 
-        // Second row - Configuration controls
-        gbc.gridy = 2;
+        // Third row - Configuration controls
+        gbc.gridy = 3;
+
+        gbc.gridwidth = 1;
         gbc.gridx = 0;
         labelArraySize = createModernLabel("Array Size");
         controlPanel.add(labelArraySize, gbc);

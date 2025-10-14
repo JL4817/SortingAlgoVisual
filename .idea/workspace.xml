@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="heapsort" />
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="center the title">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,6 +93,8 @@
       <workItem from="1759755392705" duration="2600000" />
       <workItem from="1759758005005" duration="2530000" />
       <workItem from="1760208636275" duration="5029000" />
+      <workItem from="1760450876735" duration="149000" />
+      <workItem from="1760452358341" duration="3344000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -187,7 +192,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760214229047</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="center the title">
+      <option name="closed" value="true" />
+      <created>1760451020415</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1760451020415</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +229,7 @@
     <MESSAGE value="Gave modern feel to the GUI, &#10;user friendly with Key etc. &#10;Grouped the components in Methods for easier edition and later on use. Dark theme." />
     <MESSAGE value="minor position change" />
     <MESSAGE value="heapsort" />
-    <option name="LAST_COMMIT_MESSAGE" value="heapsort" />
+    <MESSAGE value="center the title" />
+    <option name="LAST_COMMIT_MESSAGE" value="center the title" />
   </component>
 </project>
