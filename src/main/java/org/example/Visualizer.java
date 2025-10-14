@@ -65,7 +65,7 @@ public class Visualizer extends JFrame {
         // Sorting algorithm buttons (First row)
         gbc.gridy = 1;
 
-        gbc.gridx = 0; // Column number
+        gbc.gridx = 0; // Column number (the different number of buttons)
         gbc.gridwidth = 1;
         btnBubble = createModernButton("Bubble Sort");
         btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
