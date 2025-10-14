@@ -183,11 +183,11 @@ public class Visualizer extends JFrame {
         btnRandomize = createModernButton("Randomize");
         controlPanel.add(btnRandomize, gbc);
 
-        gbc.gridx = 2;
+        gbc.gridx = 1;
         btnReset = createModernButton("Reset");
         controlPanel.add(btnReset, gbc);
 
-        gbc.gridx = 4;
+        gbc.gridx = 2;
         btnPause = createModernButton("Pause");
         controlPanel.add(btnPause, gbc);
 
@@ -262,7 +262,11 @@ public class Visualizer extends JFrame {
             // no implementation yet
         });
         btnExit.addActionListener(e -> System.exit(0));
-        btnPause.addActionListener(e -> System.exit(0));
+        btnPause.addActionListener(e -> pauseAlgo());
+    }
+
+    private void pauseAlgo() {
+
     }
 
     private JButton createModernButton(String text) {

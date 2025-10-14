@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="visual add">
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="pause button no implementation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
     </list>
@@ -95,7 +95,7 @@
       <workItem from="1759758005005" duration="2530000" />
       <workItem from="1760208636275" duration="5029000" />
       <workItem from="1760450876735" duration="149000" />
-      <workItem from="1760452358341" duration="4058000" />
+      <workItem from="1760452358341" duration="5034000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -225,7 +225,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760456920186</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="pause button no implementation">
+      <option name="closed" value="true" />
+      <created>1760458289698</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1760458289698</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +265,7 @@
     <MESSAGE value="center the title" />
     <MESSAGE value="added rows for visual" />
     <MESSAGE value="visual add" />
-    <option name="LAST_COMMIT_MESSAGE" value="visual add" />
+    <MESSAGE value="pause button no implementation" />
+    <option name="LAST_COMMIT_MESSAGE" value="pause button no implementation" />
   </component>
 </project>
