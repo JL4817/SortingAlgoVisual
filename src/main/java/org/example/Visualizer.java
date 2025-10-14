@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 public class Visualizer extends JFrame {
     private Panel sortPanel;
-    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnQuick, btnHeap, btnRandomize, btnReset, btnExit;
+    private JButton btnBubble, btnSelection, btnInsertion, btnMerge, btnQuick, btnHeap, btnRandomize, btnReset, btnExit, btnPause;
     private JSlider speedSlider;
     private JTextField txtArraySize, txtPivot;
     private JLabel labelSpeed, labelArraySize, labelStatus, labelPivot;
@@ -188,6 +188,10 @@ public class Visualizer extends JFrame {
         controlPanel.add(btnReset, gbc);
 
         gbc.gridx = 4;
+        btnPause = createModernButton("Pause");
+        controlPanel.add(btnPause, gbc);
+
+        gbc.gridx = 5;
         btnExit = createModernButton("Exit");
         controlPanel.add(btnExit, gbc);
 
@@ -258,6 +262,7 @@ public class Visualizer extends JFrame {
             // no implementation yet
         });
         btnExit.addActionListener(e -> System.exit(0));
+        btnPause.addActionListener(e -> System.exit(0));
     }
 
     private JButton createModernButton(String text) {

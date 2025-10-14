@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="center the title">
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="visual add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
     </list>
@@ -22,6 +22,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -94,7 +95,7 @@
       <workItem from="1759758005005" duration="2530000" />
       <workItem from="1760208636275" duration="5029000" />
       <workItem from="1760450876735" duration="149000" />
-      <workItem from="1760452358341" duration="3344000" />
+      <workItem from="1760452358341" duration="4058000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -200,7 +201,31 @@
       <option name="project" value="LOCAL" />
       <updated>1760451020415</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="center the title">
+      <option name="closed" value="true" />
+      <created>1760456730135</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1760456730135</updated>
+    </task>
+    <task id="LOCAL-00015" summary="added rows for visual">
+      <option name="closed" value="true" />
+      <created>1760456884237</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1760456884237</updated>
+    </task>
+    <task id="LOCAL-00016" summary="visual add">
+      <option name="closed" value="true" />
+      <created>1760456920186</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1760456920186</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +255,8 @@
     <MESSAGE value="minor position change" />
     <MESSAGE value="heapsort" />
     <MESSAGE value="center the title" />
-    <option name="LAST_COMMIT_MESSAGE" value="center the title" />
+    <MESSAGE value="added rows for visual" />
+    <MESSAGE value="visual add" />
+    <option name="LAST_COMMIT_MESSAGE" value="visual add" />
   </component>
 </project>
