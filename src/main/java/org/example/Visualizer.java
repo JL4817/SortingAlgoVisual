@@ -70,7 +70,7 @@ public class Visualizer extends JFrame {
         btnBubble = createModernButton("Bubble Sort");
         btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
                 "<b>Bubble Sort</b><br/>" +
-                "Repeatedly compares adjacent elements and swaps them if they're in the wrong order.<br/><br/>" +
+                "Repeatedly compares adjacent elements and swaps them if they're in the wrong order. Here: Sorting ascending <br/><br/>" +
                 "<b>Time Complexity:</b> O(n²)<br/>" +
                 "<b>Example:</b> [5, 2, 8, 1] → [2, 5, 1, 8] → [2, 1, 5, 8] → [1, 2, 5, 8]" +
                 "</div></html>");
