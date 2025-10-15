@@ -11,11 +11,14 @@ public class HeapSort {
         // e.g. Original array: [4, 10, 3, 5, 1, 2]
         // After building max heap: [10, 5, 3, 4, 1, 2] - largest at root
         for (int i = n / 2 - 1; i >= 0; i--) {
+            panel.getSortingController().checkPauseAndStop();
             heapify(array, n, i, panel, delay);
         }
 
         // The sorting part
         for (int i = n - 1; i > 0; i--) {
+            panel.getSortingController().checkPauseAndStop();
+
             panel.updateColors(0, i, Panel.COMPARING);
             panel.repaint();
             Thread.sleep(delay);
@@ -44,6 +47,8 @@ public class HeapSort {
     // Arranges into max heap (not sorting)
     // Ensures: Parent >= both children
     private static void heapify(int[] array, int heapSize, int i, Panel panel, int delay) throws InterruptedException {
+        panel.getSortingController().checkPauseAndStop();
+
         int largest = i;           // Initialize largest as root
         int left = 2 * i + 1;      // Left child index
         int right = 2 * i + 2;     // Right child index

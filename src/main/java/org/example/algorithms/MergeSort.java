@@ -9,12 +9,15 @@ public class MergeSort {
 
         // Mark all elements as sorted at the end
         for (int i = 0; i < array.length; i++) {
+            panel.getSortingController().checkPauseAndStop();
             panel.updateColors(i, -1, Panel.SORTED);
         }
         panel.repaint();
     }
 
     private static void mergeSort(int[] array, int left, int right, Panel panel, int delay) throws InterruptedException {
+        panel.getSortingController().checkPauseAndStop();
+
         if (left < right) { // Stops infinite recursion - means multiple elements remain
             int mid = left + (right - left) / 2; // Safer way to find mid (avoids overflow)
 
@@ -68,6 +71,8 @@ public class MergeSort {
 
         // Compare elements from both arrays and pick smaller one
         while (i < n1 && j < n2) {
+            panel.getSortingController().checkPauseAndStop();
+
             // Highlight the TWO elements being compared
             panel.updateColors(left + i, mid + 1 + j, Panel.COMPARING);
             panel.repaint();
@@ -92,6 +97,8 @@ public class MergeSort {
 
         // Copy any remaining elements from leftArray
         while (i < n1) {
+            panel.getSortingController().checkPauseAndStop();
+
             array[k] = leftArray[i];
             panel.updateColors(k, -1, Panel.SWAPPING);
             panel.repaint();
@@ -102,6 +109,8 @@ public class MergeSort {
 
         // Copy any remaining elements from rightArray
         while (j < n2) {
+            panel.getSortingController().checkPauseAndStop();
+
             array[k] = rightArray[j];
             panel.updateColors(k, -1, Panel.SWAPPING);
             panel.repaint();

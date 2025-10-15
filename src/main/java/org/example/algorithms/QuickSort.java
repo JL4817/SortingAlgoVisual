@@ -11,12 +11,15 @@ public class QuickSort {
 
         // Mark all as sorted
         for (int i = 0; i < array.length; i++) {
+            panel.getSortingController().checkPauseAndStop();
             panel.updateColors(i, -1, Panel.SORTED);
         }
         panel.repaint();
     }
 
     private static void quickSortRecursive(int[] array, int low, int high, Panel panel, int delay, String pivotStrategy) throws InterruptedException {
+        panel.getSortingController().checkPauseAndStop();
+
         if (low < high) {
             int pivotIndex = partition(array, low, high, panel, delay, pivotStrategy);
             quickSortRecursive(array, low, pivotIndex - 1, panel, delay, pivotStrategy);
@@ -36,6 +39,8 @@ public class QuickSort {
 
         // Partition process
         for (int j = low; j < high; j++) {
+            panel.getSortingController().checkPauseAndStop();
+
             panel.updateColors(j, high, Panel.COMPARING);
             panel.repaint();
             Thread.sleep(delay);

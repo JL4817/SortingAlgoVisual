@@ -12,6 +12,8 @@ public class InsertionSort {
 
         // Start from index 1 (index 0 is considered sorted)
         for (int i = 1; i < n; i++) {
+            panel.getSortingController().checkPauseAndStop();
+
             int key = array[i];  // Store the current element to insert
             int j = i - 1; // Start from the last element of the sorted portion [2, 5, 8 | 1], i value = 1, j value = 8
             // 1 shifts down leftwards.
@@ -23,6 +25,8 @@ public class InsertionSort {
 
             // Check if we need to shift
             while (j >= 0 && array[j] > key) {
+                panel.getSortingController().checkPauseAndStop();
+
                 // Two conditions must be true:
                 // 1. j >= 0: We haven't gone past the beginning of the array
                 // 2. array[j] > key: The element at j is bigger than what we're inserting

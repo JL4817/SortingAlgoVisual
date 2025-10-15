@@ -11,6 +11,8 @@ public class SelectionSort {
         int n = array.length;
 
         for (int i = 0; i < n - 1; i++) {
+            panel.getSortingController().checkPauseAndStop();
+
             // Assume the current position has the minimum
             int minIndex = i;
 
@@ -21,6 +23,8 @@ public class SelectionSort {
 
             // Find the minimum element in the unsorted portion
             for (int j = i + 1; j < n; j++) {
+                panel.getSortingController().checkPauseAndStop();
+
                 // Keep i grey, make i+1 onwards red when searching
                 panel.updateColors(i, -1, Panel.DEFAULT);
                 panel.updateColors(minIndex, j, Panel.COMPARING);

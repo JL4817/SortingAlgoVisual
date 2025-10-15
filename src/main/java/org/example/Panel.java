@@ -23,6 +23,8 @@ public class Panel extends JPanel {
     private static final Color TEXT_COLOR = new Color(148, 163, 184);
     private static final Color GRID_COLOR = new Color(51, 65, 85);
 
+    private SortingController sortingController;
+
     private int[] array;
     private int[] colors;
     private int arraySize = 50;
@@ -30,6 +32,10 @@ public class Panel extends JPanel {
     public Panel() {
         setBackground(DARK_BG);
         randomizeArray(arraySize);
+    }
+
+    public void setSortingController(SortingController controller) {
+        this.sortingController = controller;
     }
 
     public void randomizeArray(int size) {
@@ -190,5 +196,9 @@ public class Panel extends JPanel {
 
     public void heapSort(int delay) throws InterruptedException {
         HeapSort.sort(array, this, delay);
+    }
+
+    public SortingController getSortingController() {
+        return sortingController;
     }
 }

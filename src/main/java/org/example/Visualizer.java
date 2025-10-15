@@ -12,6 +12,7 @@ public class Visualizer extends JFrame {
     private JSlider speedSlider;
     private JTextField txtArraySize, txtPivot;
     private JLabel labelSpeed, labelArraySize, labelStatus, labelPivot;
+    private SortingController sortingController;
 
     // Modern color scheme
     private static final Color DARK_BG = new Color(26, 32, 44);
@@ -25,6 +26,10 @@ public class Visualizer extends JFrame {
         setTitle("Sorting Algorithm Visualizer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        sortingController = new SortingController();
+        sortPanel = new Panel();
+        sortPanel.setSortingController(sortingController);
 
         setupUI();
     }
@@ -65,7 +70,7 @@ public class Visualizer extends JFrame {
         // Sorting algorithm buttons (First row)
         gbc.gridy = 1;
 
-        gbc.gridx = 0; // Column number (the different number of buttons)
+        gbc.gridx = 0;
         gbc.gridwidth = 1;
         btnBubble = createModernButton("Bubble Sort");
         btnBubble.setToolTipText("<html><div style='font-size:14px;'>" +
@@ -242,9 +247,6 @@ public class Visualizer extends JFrame {
         labelStatus.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         statusPanel.add(labelStatus);
 
-        // Sort panel (center)
-        sortPanel = new Panel();
-
         // Add panels to frame
         add(controlPanel, BorderLayout.NORTH);
         add(sortPanel, BorderLayout.CENTER);
@@ -258,15 +260,38 @@ public class Visualizer extends JFrame {
         btnQuick.addActionListener(e -> startSort("Quick"));
         btnHeap.addActionListener(e -> startSort("Heap"));
         btnRandomize.addActionListener(e -> randomizeArray());
-        btnReset.addActionListener(e -> {
-            // no implementation yet
-        });
+        btnReset.addActionListener(e -> resetArray());
         btnExit.addActionListener(e -> System.exit(0));
         btnPause.addActionListener(e -> pauseAlgo());
     }
 
     private void pauseAlgo() {
+        sortingController.togglePause();
+        if (sortingController.isPaused()) {
+            btnPause.setText("Resume");
+            labelStatus.setText("Paused");
+        } else {
+            btnPause.setText("Pause");
+            labelStatus.setText("Resuming...");
+        }
+    }
 
+    private void resetArray() {
+        // Stop any running sort first
+        if (sortingController.getCurrentThread() != null && sortingController.getCurrentThread().isAlive()) {
+            sortingController.stop();
+            try {
+                sortingController.getCurrentThread().join(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        sortingController.reset();
+        sortPanel.resetArray();
+        labelStatus.setText("Array reset");
+        btnPause.setText("Pause");
+        enableButtons(true);
     }
 
     private JButton createModernButton(String text) {
@@ -349,12 +374,25 @@ public class Visualizer extends JFrame {
     }
 
     private void startSort(String algorithm) {
+        // Stop any currently running sort
+        if (sortingController.getCurrentThread() != null && sortingController.getCurrentThread().isAlive()) {
+            sortingController.stop();
+            try {
+                sortingController.getCurrentThread().join(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        sortingController.reset();
+        btnPause.setText("Pause");
         enableButtons(false);
+        btnPause.setEnabled(true);
         labelStatus.setText("Sorting with " + algorithm + " Sort...");
 
         int delay = 505 - (speedSlider.getValue() * 5);
 
-        new Thread(() -> {
+        Thread sortThread = new Thread(() -> {
             try {
                 switch (algorithm) {
                     case "Bubble":
@@ -379,20 +417,39 @@ public class Visualizer extends JFrame {
                 }
                 SwingUtilities.invokeLater(() -> {
                     labelStatus.setText("Sorting Complete!");
+                    btnPause.setText("Pause");
                     enableButtons(true);
                 });
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                SwingUtilities.invokeLater(() -> {
+                    labelStatus.setText("Sorting stopped");
+                    btnPause.setText("Pause");
+                    enableButtons(true);
+                });
             } catch (Exception e) {
                 SwingUtilities.invokeLater(() -> {
                     labelStatus.setText("Error: " + e.getMessage());
+                    btnPause.setText("Pause");
                     enableButtons(true);
                 });
             }
-        }).start();
+        });
+
+        sortingController.setCurrentThread(sortThread);
+        sortThread.start();
     }
 
     private void randomizeArray() {
+        // Stop any running sort first
+        if (sortingController.getCurrentThread() != null && sortingController.getCurrentThread().isAlive()) {
+            sortingController.stop();
+            try {
+                sortingController.getCurrentThread().join(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+        }
+
         try {
             int size = Integer.parseInt(txtArraySize.getText());
 
@@ -403,8 +460,12 @@ public class Visualizer extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
+
+            sortingController.reset();
             sortPanel.randomizeArray(size);
             labelStatus.setText("Array randomized with " + size + " elements");
+            btnPause.setText("Pause");
+            enableButtons(true);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this,
@@ -423,5 +484,6 @@ public class Visualizer extends JFrame {
         btnHeap.setEnabled(enabled);
         btnRandomize.setEnabled(enabled);
         btnReset.setEnabled(enabled);
+        btnPause.setEnabled(!enabled);
     }
 }

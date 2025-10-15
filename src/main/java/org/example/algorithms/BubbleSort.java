@@ -12,6 +12,8 @@ public class BubbleSort {
 
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
+                panel.getSortingController().checkPauseAndStop();
+
                 // Compare adjacent elements
                 panel.updateColors(j, j + 1, Panel.COMPARING);
                 panel.repaint();
