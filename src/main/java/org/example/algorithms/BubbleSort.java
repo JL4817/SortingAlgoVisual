@@ -10,20 +10,24 @@ public class BubbleSort {
     public static void sort(int[] array, Panel panel, int delay) throws InterruptedException {
         int n = array.length;
 
+        panel.getSortingController().setCurrentDelay(delay);
+
         for (int i = 0; i < n - 1; i++) {
             for (int j = 0; j < n - i - 1; j++) {
                 panel.getSortingController().checkPauseAndStop();
 
+                int currentDelay = panel.getSortingController().getCurrentDelay();
+
                 // Compare adjacent elements
                 panel.updateColors(j, j + 1, Panel.COMPARING);
                 panel.repaint();
-                Thread.sleep(delay);
+                Thread.sleep(currentDelay);
 
                 if (array[j] > array[j + 1]) {
                     // Change colors to swapping
                     panel.updateColors(j, j + 1, Panel.SWAPPING);
                     panel.repaint();
-                    Thread.sleep(delay);
+                    Thread.sleep(currentDelay);
 
                     // Switch
                     int temp = array[j];

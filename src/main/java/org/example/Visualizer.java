@@ -234,6 +234,11 @@ public class Visualizer extends JFrame {
         JPanel speedPanel = createSpeedPanel();
         controlPanel.add(speedPanel, gbc);
 
+        speedSlider.addChangeListener(e -> { // Update the delay (speed)
+            int delay = 505 - (speedSlider.getValue() * 5);
+            sortingController.setCurrentDelay(delay);
+        });
+
         // Status panel at bottom
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 15));
         statusPanel.setBackground(PANEL_BG);

@@ -10,9 +10,13 @@ public class InsertionSort {
     public static void sort(int[] array, Panel panel, int delay) throws InterruptedException {
         int n = array.length;
 
+        panel.getSortingController().setCurrentDelay(delay);
+
         // Start from index 1 (index 0 is considered sorted)
         for (int i = 1; i < n; i++) {
             panel.getSortingController().checkPauseAndStop();
+
+            int currentDelay = panel.getSortingController().getCurrentDelay();
 
             int key = array[i];  // Store the current element to insert
             int j = i - 1; // Start from the last element of the sorted portion [2, 5, 8 | 1], i value = 1, j value = 8
@@ -21,11 +25,13 @@ public class InsertionSort {
             // Highlight the element being inserted
             panel.updateColors(i, -1, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             // Check if we need to shift
             while (j >= 0 && array[j] > key) {
                 panel.getSortingController().checkPauseAndStop();
+
+                currentDelay = panel.getSortingController().getCurrentDelay();
 
                 // Two conditions must be true:
                 // 1. j >= 0: We haven't gone past the beginning of the array
@@ -35,12 +41,14 @@ public class InsertionSort {
                 // Show comparison
                 panel.updateColors(j, i, Panel.COMPARING);
                 panel.repaint();
-                Thread.sleep(delay);
+                Thread.sleep(currentDelay);
+
+                currentDelay = panel.getSortingController().getCurrentDelay();
 
                 // Show swapping/shifting
                 panel.updateColors(j, j + 1, Panel.SWAPPING);
                 panel.repaint();
-                Thread.sleep(delay);
+                Thread.sleep(currentDelay);
 
                 // Shift element to the right
                 array[j + 1] = array[j];    // Copy element at j to position j+1 (shift right)

@@ -5,6 +5,8 @@ import org.example.Panel;
 public class MergeSort {
 
     public static void sort(int[] array, Panel panel, int delay) throws InterruptedException {
+        panel.getSortingController().setCurrentDelay(delay);
+
         mergeSort(array, 0, array.length - 1, panel, delay);
 
         // Mark all elements as sorted at the end
@@ -18,6 +20,8 @@ public class MergeSort {
     private static void mergeSort(int[] array, int left, int right, Panel panel, int delay) throws InterruptedException {
         panel.getSortingController().checkPauseAndStop();
 
+        int currDelay = panel.getSortingController().getCurrentDelay();
+
         if (left < right) { // Stops infinite recursion - means multiple elements remain
             int mid = left + (right - left) / 2; // Safer way to find mid (avoids overflow)
 
@@ -26,20 +30,23 @@ public class MergeSort {
                 panel.updateColors(i, -1, Panel.DEFAULT); // Show division boundaries
             }
             panel.repaint();
-            Thread.sleep(delay / 2);
+            Thread.sleep(currDelay / 2);
 
             // Recursively sort the left half
-            mergeSort(array, left, mid, panel, delay);
+            mergeSort(array, left, mid, panel, currDelay);
 
             // Recursively sort the right half
-            mergeSort(array, mid + 1, right, panel, delay);
+            mergeSort(array, mid + 1, right, panel, currDelay);
 
             // Merge the two sorted halves
-            merge(array, left, mid, right, panel, delay);
+            merge(array, left, mid, right, panel, currDelay);
         }
     }
 
     private static void merge(int[] array, int left, int mid, int right, Panel panel, int delay) throws InterruptedException {
+
+        int currDelay = panel.getSortingController().getCurrentDelay();
+
         int n1 = mid - left + 1; // Left subarray size (includes middle)
         int n2 = right - mid;     // Right subarray size (excludes middle)
 
@@ -63,7 +70,7 @@ public class MergeSort {
             panel.updateColors(i, -1, Panel.COMPARING);
         }
         panel.repaint();
-        Thread.sleep(delay);
+        Thread.sleep(currDelay);
 
         // Merge the temp arrays back into the original array
         int i = 0, j = 0;  // Indices for leftArray and rightArray
@@ -76,7 +83,7 @@ public class MergeSort {
             // Highlight the TWO elements being compared
             panel.updateColors(left + i, mid + 1 + j, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currDelay);
 
             // Pick the smaller element and reconstruct the array
             if (leftArray[i] <= rightArray[j]) {
@@ -90,7 +97,7 @@ public class MergeSort {
             // Show the element that was just placed (swapping color = green)
             panel.updateColors(k, -1, Panel.SWAPPING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currDelay);
 
             k++;
         }
@@ -102,7 +109,7 @@ public class MergeSort {
             array[k] = leftArray[i];
             panel.updateColors(k, -1, Panel.SWAPPING);
             panel.repaint();
-            Thread.sleep(delay / 2);
+            Thread.sleep(currDelay / 2);
             i++;
             k++;
         }
@@ -114,7 +121,7 @@ public class MergeSort {
             array[k] = rightArray[j];
             panel.updateColors(k, -1, Panel.SWAPPING);
             panel.repaint();
-            Thread.sleep(delay / 2);
+            Thread.sleep(currDelay / 2);
             j++;
             k++;
         }
@@ -124,7 +131,7 @@ public class MergeSort {
             panel.updateColors(idx, -1, Panel.SORTED);
         }
         panel.repaint();
-        Thread.sleep(delay);
+        Thread.sleep(currDelay);
 
         // Reset to default color before returning
         for (int idx = left; idx <= right; idx++) {

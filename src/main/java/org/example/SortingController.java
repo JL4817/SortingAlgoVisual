@@ -5,6 +5,7 @@ public class SortingController {
     private volatile boolean signalToStop = false;
     private Thread currentThread = null;
     private final Object sortingLock = new Object();
+    private volatile int currentDelay = 255;    // For speed update delay
 
     // Switches between paused and running states.
     public void togglePause() {
@@ -55,5 +56,13 @@ public class SortingController {
 
     public Thread getCurrentThread() {
         return currentThread;
+    }
+
+    public void setCurrentDelay(int delay) {
+        this.currentDelay = delay;
+    }
+
+    public int getCurrentDelay() {
+        return currentDelay;
     }
 }

@@ -10,26 +10,32 @@ public class SelectionSort {
     public static void sort(int[] array, Panel panel, int delay) throws InterruptedException {
         int n = array.length;
 
+        panel.getSortingController().setCurrentDelay(delay);
+
         for (int i = 0; i < n - 1; i++) {
             panel.getSortingController().checkPauseAndStop();
 
             // Assume the current position has the minimum
             int minIndex = i;
 
+            int currentDelay = panel.getSortingController().getCurrentDelay();
+
             // Keep i grey throughout the search
             panel.updateColors(i, -1, Panel.DEFAULT);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             // Find the minimum element in the unsorted portion
             for (int j = i + 1; j < n; j++) {
                 panel.getSortingController().checkPauseAndStop();
 
+                currentDelay = panel.getSortingController().getCurrentDelay();
+
                 // Keep i grey, make i+1 onwards red when searching
                 panel.updateColors(i, -1, Panel.DEFAULT);
                 panel.updateColors(minIndex, j, Panel.COMPARING);
                 panel.repaint();
-                Thread.sleep(delay);
+                Thread.sleep(currentDelay);
 
                 if (array[j] < array[minIndex]) {
                     // Found a new minimum
@@ -41,7 +47,10 @@ public class SelectionSort {
             if (minIndex != i) {
                 panel.updateColors(i, minIndex, Panel.SWAPPING);
                 panel.repaint();
-                Thread.sleep(delay);
+
+                currentDelay = panel.getSortingController().getCurrentDelay();
+
+                Thread.sleep(currentDelay);
 
                 int temp = array[i];
                 array[i] = array[minIndex];
@@ -56,7 +65,10 @@ public class SelectionSort {
             // Mark the current position as sorted
             panel.updateColors(i, -1, Panel.SORTED);
             panel.repaint();
-            Thread.sleep(delay);
+
+            currentDelay = panel.getSortingController().getCurrentDelay();
+
+            Thread.sleep(currentDelay);
         }
 
         // Mark last element as sorted

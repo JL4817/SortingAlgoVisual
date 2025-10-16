@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="overlap button problem">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/SortingController.java" afterDir="false" />
+    <list default="true" id="c7c8fb97-41ce-4326-979a-10b7cb94aa8c" name="Changes" comment="Pause/Stop &#10;speed does not change - need to do">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/SortingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/SortingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Visualizer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/algorithms/BubbleSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/BubbleSort.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/algorithms/HeapSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/algorithms/HeapSort.java" afterDir="false" />
@@ -104,7 +103,7 @@
       <workItem from="1760208636275" duration="5029000" />
       <workItem from="1760450876735" duration="149000" />
       <workItem from="1760452358341" duration="5189000" />
-      <workItem from="1760555085089" duration="2850000" />
+      <workItem from="1760555085089" duration="9321000" />
     </task>
     <task id="LOCAL-00001" summary="Start">
       <option name="closed" value="true" />
@@ -250,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760459100599</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Pause/Stop &#10;speed does not change - need to do">
+      <option name="closed" value="true" />
+      <created>1760558574163</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1760558574163</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -284,6 +291,7 @@
     <MESSAGE value="visual add" />
     <MESSAGE value="pause button no implementation" />
     <MESSAGE value="overlap button problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="overlap button problem" />
+    <MESSAGE value="Pause/Stop &#10;speed does not change - need to do" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pause/Stop &#10;speed does not change - need to do" />
   </component>
 </project>

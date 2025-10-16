@@ -7,6 +7,9 @@ public class QuickSort {
     private static final Random random = new Random();
 
     public static void sort(int[] array, Panel panel, int delay, String pivotStrategy) throws InterruptedException {
+
+        panel.getSortingController().setCurrentDelay(delay);
+
         quickSortRecursive(array, 0, array.length - 1, panel, delay, pivotStrategy);
 
         // Mark all as sorted
@@ -28,12 +31,14 @@ public class QuickSort {
     }
 
     private static int partition(int[] array, int low, int high, Panel panel, int delay, String pivotStrategy) throws InterruptedException {
+        int currentDelay = panel.getSortingController().getCurrentDelay();
+
         // Select and move pivot to end
         int pivotIndex = selectPivot(low, high, pivotStrategy);
         swap(array, pivotIndex, high);
         panel.updateColors(pivotIndex, high, Panel.SWAPPING);
         panel.repaint();
-        Thread.sleep(delay);
+        Thread.sleep(currentDelay);
 
         int i = low - 1;
 
@@ -41,16 +46,20 @@ public class QuickSort {
         for (int j = low; j < high; j++) {
             panel.getSortingController().checkPauseAndStop();
 
+            currentDelay = panel.getSortingController().getCurrentDelay();
+
             panel.updateColors(j, high, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             if (array[j] <= array[high]) {
+                currentDelay = panel.getSortingController().getCurrentDelay();
+
                 i++;
                 swap(array, i, j);
                 panel.updateColors(i, j, Panel.SWAPPING);
                 panel.repaint();
-                Thread.sleep(delay);
+                Thread.sleep(currentDelay);
             }
 
             panel.updateColors(j, high, Panel.DEFAULT);
@@ -60,7 +69,7 @@ public class QuickSort {
         swap(array, i + 1, high);
         panel.updateColors(i + 1, high, Panel.SORTED);
         panel.repaint();
-        Thread.sleep(delay);
+        Thread.sleep(currentDelay);
 
         return i + 1;
     }

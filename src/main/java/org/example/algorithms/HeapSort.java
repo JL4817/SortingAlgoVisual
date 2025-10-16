@@ -5,6 +5,8 @@ import org.example.Panel;
 public class HeapSort {
 
     public static void sort(int[] array, Panel panel, int delay) throws InterruptedException {
+        panel.getSortingController().setCurrentDelay(delay);
+
         int n = array.length;
 
         // Converts the array into a max heap structure where the largest element is at the root (index 0)
@@ -19,16 +21,18 @@ public class HeapSort {
         for (int i = n - 1; i > 0; i--) {
             panel.getSortingController().checkPauseAndStop();
 
+            int currentDelay = panel.getSortingController().getCurrentDelay();
+
             panel.updateColors(0, i, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             // Swap root with last element - move largest element to the end
             swap(array, 0, i);
 
             panel.updateColors(0, i, Panel.SWAPPING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             panel.updateColors(i, -1, Panel.SORTED);
             panel.repaint();
@@ -53,16 +57,20 @@ public class HeapSort {
         int left = 2 * i + 1;      // Left child index
         int right = 2 * i + 2;     // Right child index
 
+        int currentDelay = panel.getSortingController().getCurrentDelay();
+
         // Highlight the current node being heapified
         panel.updateColors(i, -1, Panel.COMPARING);
         panel.repaint();
-        Thread.sleep(delay / 2);
+        Thread.sleep(currentDelay / 2);
 
         // Check if left child exists and is greater than root
-        if (left < heapSize) {
+        if (left < heapSize) { // Make duplicate method later
+            currentDelay = panel.getSortingController().getCurrentDelay();
+
             panel.updateColors(i, left, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             if (array[left] > array[largest]) {
                 largest = left;
@@ -71,9 +79,11 @@ public class HeapSort {
 
         // Check if right child exists and is greater than largest so far
         if (right < heapSize) {
+            currentDelay = panel.getSortingController().getCurrentDelay();
+
             panel.updateColors(largest, right, Panel.COMPARING);
             panel.repaint();
-            Thread.sleep(delay);
+            Thread.sleep(currentDelay);
 
             if (array[right] > array[largest]) {
                 largest = right;
@@ -90,7 +100,7 @@ public class HeapSort {
             swap(array, i, largest);
 
             panel.repaint();
-            Thread.sleep(delay / 2);
+            Thread.sleep(currentDelay / 2);
 
             // Reset colors before recursive call
             panel.updateColors(i, largest, Panel.DEFAULT);
